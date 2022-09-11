@@ -6,6 +6,8 @@ const express = require('express')
 const app = express()
 const port = 1337
 
+app.use(express.json())
+
 // MONGODB
 const mongoose = require('mongoose')
 const UserModel = require('./models/Users')
@@ -22,6 +24,13 @@ app.get("/getUsers", (req, res) => {
   })
 })
 
+app.post("/createUser", async (req, res) => {
+  const user = req.body
+  const newUser = new UserModel(user)
+
+  await newUser.save()
+  res.json(user)
+})
 
 app.listen(port, () => {
   console.log('hi there')
