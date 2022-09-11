@@ -1,3 +1,4 @@
+// ENV
 require('dotenv').config()
 
 // EXPRESS
@@ -15,10 +16,9 @@ mongoose.connect(connString)
 
 // HTTP REQUESTS
 app.get("/getUsers", (req, res) => {
-  UserModel.find({}, (err, data) => {
-    if (err) console.error(err)
-
-    res.json(data)
+  UserModel.find({}, (err, result) => {
+    if (err) res.json(err)
+    else res.json(result)
   })
 })
 
