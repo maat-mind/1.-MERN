@@ -5,8 +5,11 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const port = 1337
-
 app.use(express.json())
+
+// CORS
+const cors = require('cors')
+app.use(cors())
 
 // MONGODB
 const mongoose = require('mongoose')
