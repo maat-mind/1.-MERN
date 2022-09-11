@@ -1,11 +1,18 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Axios from "axios"
 
 function App() {
 
-  const [userList, setUserList] = useState([
-    { id: 1, name: "Pedro", age: 20, username: "pedro123" },
-  ])
+  const [userList, setUserList] = useState([])
+
+  useEffect(() => {
+    Axios.get("http://localhost:1337/getUsers")
+      .then((res) => {
+        setUserList(res.data)
+        console.log(res.data)
+      })
+  }, [])
 
   return (
     <>
